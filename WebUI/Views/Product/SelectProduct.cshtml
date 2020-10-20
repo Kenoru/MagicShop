@@ -1,0 +1,37 @@
+﻿@model WebUI.Models.ProductViewModel
+
+
+@{
+    ViewBag.Title = Model.Product.Name;
+}
+
+
+<div class="productview">
+
+    <img width="200" height="200" src="~/Content/img/@Model.Product.Image">
+    <h2>
+        @Model.Product.Name
+    </h2>
+
+    <div>
+        @Html.Raw(Model.Product.Description)
+    </div>
+
+    <div class="buttonbar">
+        <div class="price">@Model.Product.Price.ToString("# GP")</div>
+
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            @Html.Hidden("prodId", Model.Product.Id);
+
+
+            <input class="input" type="number" min="1" value="1" name="qty">
+            <input type="submit" class=" butt1" value="Добавить в корзину" />
+
+        }
+    </div>
+    <div class="button">
+        <a href="@Model.ReturnUrl">Продолжить покупки</a>
+    </div>
+</div>
+@Html.Action("CartBox", "Cart")

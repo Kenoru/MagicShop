@@ -1,0 +1,38 @@
+﻿@model WebUI.Models.ShippingModel
+
+@{
+    ViewBag.Title = "Оформление заказа";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <h3>Ваши данные</h3>
+
+    <div class="form-element">
+        <label>Ваше имя:</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-element">
+        <label>Место доставки:</label>
+        @Html.TextBoxFor(x => x.Place, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-element">
+        <label>Комментарий к заказу:</label>
+        @Html.TextAreaFor(x => x.Note, new { @class = " " })
+    </div>
+    
+    <div class="form-element">
+        <label>
+            @Html.EditorFor(x => x.GiftWrap)
+            Завернуть в подарочную бумагу?
+        </label>
+    </div>
+
+    <input class="button order" type="submit" value="Обработать заказ" />
+    
+}

@@ -1,0 +1,15 @@
+﻿@using BusinessLayer.Entities
+@model IEnumerable<CategoryBLL>
+
+<div class="menu">
+    <div class="menu-element">
+      @Html.ActionLink("Всё", "List", new { Id = (int?)null })
+    </div>
+    @foreach (var cat in @Model)
+    {
+        <div class="menu-element">
+           @Html.ActionLink(cat.Name, "List", new { Id = cat.Id }) 
+        </div>
+    }
+</div>
+

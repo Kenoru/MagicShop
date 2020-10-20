@@ -1,0 +1,37 @@
+﻿@using BusinessLayer.Entities
+@model IEnumerable<ProductBLL>
+
+@{
+    ViewBag.Title = "Магические приколясы";
+}
+
+
+
+<div class="list">
+
+    @foreach (var p in @Model)
+    {
+        <div class="product">
+            <div class="image">
+                <img src="~/Content/img/@p.Image">
+            </div>
+            <div class="name">@Html.ActionLink(p.Name, "SelectProduct", new { Id = p.Id, returnUrl = Request.Url.PathAndQuery })</div>
+           
+            <div class="buttonbar">
+                <div class="price">@p.Price.ToString("# GP")</div>
+
+                @using (Html.BeginForm("AddToCart", "Cart"))
+                {
+                    @Html.Hidden("prodId", p.Id);
+                   
+                    
+                    <input class="input" type="number" min="1" value="1" name="qty"> 
+                    <input type="submit" class=" butt1"  value="Добавить в корзину" />
+                    
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Action("CartBox", "Cart")

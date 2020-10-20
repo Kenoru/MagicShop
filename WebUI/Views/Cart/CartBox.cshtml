@@ -1,0 +1,18 @@
+﻿@model BusinessLayer.Entities.Cart
+
+<div class="cartbox">
+@if (Model.Lines.Count() == 0)
+{
+    <div class="cartbox-element">Корзина пуста </div>
+
+}
+else
+{
+    
+    <div class="cartbox-element">Всего выбрано: @Model.ComputeTotalQuantity() товаров</div>
+    <div class="cartbox-element">На сумму: @Model.ComputeTotalValue() золота</div>
+    <div class="cartbox-element">@Html.ActionLink("Посмотреть корзину","CartView", new { returnUrl = Request.Url.PathAndQuery })</div>
+    
+}
+
+</div>
